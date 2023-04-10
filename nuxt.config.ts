@@ -12,6 +12,13 @@ export default defineNuxtConfig({
 			]
 		}
 	},
+	vite: {
+		server: {
+			fs: {
+				allow: ["/Users/tobiaseriksen/Documents/projects/T00BSTAR/contentful-richtext-converter"]
+			}
+		}
+	},
 	modules: [
 		'@nuxtjs/color-mode',
 		'@nuxtjs/tailwindcss',
