@@ -14,18 +14,18 @@
 		</div>
 		<div class="col-span-12 sm:col-span-6 lg:col-span-4 relative">
 			<ItemPill>HTML</ItemPill>
-			<textarea spellcheck="false" class="relative sm:absolute inset-0 w-full h-full outline-none p-8 bg-[#111827] text-white" v-model="html" placeholder="Write some HTML here..." />
+			<textarea spellcheck="false" class="relative w-full h-full outline-none p-8 bg-[#111827] text-white" v-model="html" placeholder="Write some HTML here..." />
 		</div>
 		<div class="col-span-12 sm:col-span-6 lg:col-span-4 h-full overflow-y-auto bg-white/5 relative">
-			<ItemPill>JSON</ItemPill>
+			<ItemPill class="sticky float-right">JSON</ItemPill>
 			<client-only>
-				<pre v-if="activeShow === 'output'" class="p-8 text-[14px]">{{theHTML}}</pre>
+				<pre v-if="activeShow === 'output'" class="p-8 text-[14px]">{{output.json}}</pre>
 			</client-only>
 		</div>
 		<div class="col-span-12 lg:col-span-4 h-full overflow-y-auto bg-white/10 relative">
-			<ItemPill>OUTPUT</ItemPill>
+			<ItemPill class="sticky float-right">OUTPUT</ItemPill>
 			<client-only>
-				<RichTextToHtml v-if="theHTML" class="p-8 prose dark:prose-invert" :json="theHTML" />
+				<div v-if="output.html" class="p-8 prose dark:prose-invert" v-html="output.html" />
 			</client-only>
 		</div>
 	</div>
@@ -38,7 +38,7 @@ useHead({
 		{ name: 'description', content: 'Easily convert HTML to Contentful RichText with contentful-richtext-converter package. Test in the playground and implement in your migration. Happy coding!' }
 	]
 })
-const { $htmlToRichText } = useNuxtApp()
+const { $htmlToRichText, $richTextToHtml } = useNuxtApp()
 const showToggleSwitches = ref(true)
 const activeShow = ref('output')
 const html = ref('')
@@ -57,9 +57,13 @@ const htmlIsValid = computed(() => {
 	}
 })
 
-const theHTML = computed(() => {
+const output = computed(() => {
 	if(!process.client) return true
-	return ($htmlToRichText(html.value)) ? $htmlToRichText(html.value) : {}
+	let json = ($htmlToRichText(html.value)) ? $htmlToRichText(html.value) : {}
+	return {
+		json: json,
+		html: $richTextToHtml(json)
+	}
 })
 
 const copyToClipboard = () => {

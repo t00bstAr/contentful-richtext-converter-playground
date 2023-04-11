@@ -1,16 +1,16 @@
-const {htmlToRichText} = require("contentful-richtext-converter");
+const {htmlToRichText, richTextToHtml} = require("contentful-richtext-converter");
 const errorMsg = (msg) => {return {error: msg}}
 const handler = async (event) => {
 	try {
-		const {html} = JSON.parse(event.body)
-		if(typeof html === 'undefined')
-			return {statusCode: 400, body: JSON.stringify(errorMsg('You need to define \'html\' in the json body'))}
+		const {html,richtext} = JSON.parse(event.body)
+		if(typeof html === 'undefined' && typeof richtext === 'undefined')
+			return {statusCode: 400, body: JSON.stringify(errorMsg('You need to define \'html\' or \'richtext\' in the json body'))}
 
-		let richText = htmlToRichText(html);
-		if(richText){
+		let data = (typeof html !== 'undefined') ? htmlToRichText(html) : richTextToHtml(richtext);
+		if(data){
 			return {
 				statusCode: 200,
-				body: JSON.stringify(richText),
+				body: JSON.stringify(data),
 				headers: {'Content-Type': 'application/json'}
 			}
 		}else{
