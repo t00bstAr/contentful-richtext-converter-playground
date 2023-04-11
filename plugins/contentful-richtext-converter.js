@@ -1,4 +1,4 @@
-import {htmlToRichText} from 'contentful-richtext-converter'
+import {htmlToRichText} from 'contentful-richtext-converter';
 export default defineNuxtPlugin(() => {
 	return {
 		provide: {

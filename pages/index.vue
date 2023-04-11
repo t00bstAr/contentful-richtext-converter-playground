@@ -16,8 +16,7 @@
 		</div>
 		<div class="basis-1/3 h-full overflow-y-auto bg-white bg-opacity-10">
 			<client-only>
-				<pre v-if="activeShow === 'output' && theHTML" class="p-8">{{theHTML}}</pre>
-				<pre v-else class="p-8">{}</pre>
+				<pre v-if="activeShow === 'output'" class="p-8">{{theHTML}}</pre>
 			</client-only>
 		</div>
 		<div class="basis-1/3 h-full overflow-y-auto relative">
@@ -29,6 +28,13 @@
 </template>
 
 <script setup>
+useHead({
+	title: 'Contentful RichText Converter - Playground',
+	meta: [
+		{ name: 'description', content: 'Easily convert HTML to Contentful RichText with contentful-richtext-converter package. Test in the playground and implement in your migration. Happy coding!' }
+	]
+})
+
 const { $htmlToRichText } = useNuxtApp()
 const showToggleSwitches = ref(true)
 const activeShow = ref('output')
@@ -50,7 +56,7 @@ const htmlIsValid = computed(() => {
 
 const theHTML = computed(() => {
 	if(!process.client) return true
-	return $htmlToRichText(html.value)
+	return ($htmlToRichText(html.value)) ? $htmlToRichText(html.value) : {}
 })
 
 const copyToClipboard = () => {

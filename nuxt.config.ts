@@ -2,13 +2,10 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			htmlAttrs: {
-				lang: "da"
+				lang: "en"
 			},
-			meta: [
-				{ hid: 'robots', name: 'robots', content: 'noindex' }
-			],
 			link: [
-				{rel: "icon", type: "xml/svg", sizes: "32x32", href: "/fav.svg"}
+				{rel: "icon", type: "xml/svg", sizes: "32x32", href: "/contentful-richtext-converter-icon.svg"}
 			]
 		}
 	},
