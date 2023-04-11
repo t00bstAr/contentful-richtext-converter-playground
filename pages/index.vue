@@ -1,5 +1,6 @@
 <template>
-	<div class="flex h-screen justify-between">
+	<AppHeader />
+	<div class="grid grid-cols-12 h-[calc(100vh-64px)] justify-between">
 		<div v-if="showToggleSwitches" class="flex absolute z-10 bottom-8 left-1/2 -translate-x-1/2 -translate-y-1/2 p-2 rounded-full bg-white space-x-2">
 			<div :class="htmlIsValid ? 'bg-[#2ad42a]' : 'bg-[#e33454]'" class="grid place-items-center w-[48px] h-[48px] rounded-full text-white">
 				<svg v-if="htmlIsValid" class="w-[24px] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7 425.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>
@@ -11,15 +12,18 @@
 				<svg v-else class="w-[16px] fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M280 64h40c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128C0 92.7 28.7 64 64 64h40 9.6C121 27.5 153.3 0 192 0s71 27.5 78.4 64H280zM64 112c-8.8 0-16 7.2-16 16V448c0 8.8 7.2 16 16 16H320c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H304v24c0 13.3-10.7 24-24 24H192 104c-13.3 0-24-10.7-24-24V112H64zm128-8a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>
 			</button>
 		</div>
-		<div class="basis-1/3 relative">
+		<div class="col-span-12 sm:col-span-6 lg:col-span-4 relative">
+			<label class="absolute top-4 right-4 text-[12px] pointer-events-none text-white z-10 opacity-50">HTML</label>
 			<textarea spellcheck="false" class="absolute inset-0 w-full h-full outline-none p-8 bg-[#111827] text-white" v-model="html" placeholder="Write some HTML here..." />
 		</div>
-		<div class="basis-1/3 h-full overflow-y-auto bg-white bg-opacity-10">
+		<div class="col-span-12 sm:col-span-6 lg:col-span-4 h-full overflow-y-auto bg-white/5 relative">
+			<label class="absolute top-4 right-4 text-[12px] pointer-events-none text-white z-10 opacity-50">JSON</label>
 			<client-only>
-				<pre v-if="activeShow === 'output'" class="p-8">{{theHTML}}</pre>
+				<pre v-if="activeShow === 'output'" class="p-8 text-[14px]">{{theHTML}}</pre>
 			</client-only>
 		</div>
-		<div class="basis-1/3 h-full overflow-y-auto relative">
+		<div class="col-span-12 lg:col-span-4 h-full overflow-y-auto bg-white/10 relative">
+			<label class="absolute top-4 right-4 text-[12px] pointer-events-none text-white z-10 opacity-50">OUTPUT</label>
 			<client-only>
 				<RichTextToHtml v-if="theHTML" class="p-8 prose dark:prose-invert" :json="theHTML" />
 			</client-only>
@@ -34,7 +38,6 @@ useHead({
 		{ name: 'description', content: 'Easily convert HTML to Contentful RichText with contentful-richtext-converter package. Test in the playground and implement in your migration. Happy coding!' }
 	]
 })
-
 const { $htmlToRichText } = useNuxtApp()
 const showToggleSwitches = ref(true)
 const activeShow = ref('output')
