@@ -1,9 +1,9 @@
 <template>
-	<nav class="text-white border-gray-200 bg-gray-50 dark:bg-black/25 dark:border-gray-700">
+	<nav class="text-white bg-black/25 border-gray-700">
 		<div class="flex flex-wrap items-center justify-between mx-auto p-3 sm:p-4">
 			<a href="#" class="flex items-center">
 				<LogoIcon class="w-8 h-8 mr-2 fill-current" />
-				<span class="flex flex-col sm:flex-row self-center text-sm sm:text-xl lg:text-2xl whitespace-nowrap dark:text-white sm:space-x-3">
+				<span class="flex flex-col sm:flex-row self-center text-sm sm:text-xl lg:text-2xl whitespace-nowrap text-white sm:space-x-3">
 					<span class="font-semibold">Playground</span>
 					<span class="hidden sm:inline-block">//</span>
 					<span>Contentful RichText Converter</span>
