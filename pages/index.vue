@@ -16,7 +16,7 @@
 				<div v-intersection-observer="outputIntersectionObserver" class="snap-center min-w-[100vw] lg:min-w-[auto] lg:col-span-4 h-[calc(100vh-64px)] overflow-y-auto bg-white/10 relative">
 					<ItemPill class="sticky float-right">OUTPUT</ItemPill>
 					<client-only>
-						<div v-if="output.html" class="p-8 prose-invert" v-html="output.html" />
+						<div v-if="output.html" class="p-8 prose prose-invert" v-html="output.html" />
 					</client-only>
 				</div>
 			</div>
