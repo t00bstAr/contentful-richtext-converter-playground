@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 				lang: "en"
 			},
 			link: [
-				{rel: "icon", type: "xml/svg", sizes: "32x32", href: "/contentful-richtext-converter-icon.svg"}
+				{rel: "icon", type: "xml/svg", sizes: "32x32", href: "/favicon.svg"}
 			]
 		}
 	},
