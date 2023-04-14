@@ -2,7 +2,7 @@
 	<nav class="text-white bg-black/25 border-gray-700">
 		<div class="flex flex-wrap items-center justify-between mx-auto p-3 sm:p-4">
 			<a href="#" class="flex items-center">
-				<LogoIcon class="w-8 h-8 mr-2 fill-current" />
+				<LogoColorIcon class="w-8 h-8 mr-2 fill-current" />
 				<span class="flex flex-col sm:flex-row self-center text-sm sm:text-xl lg:text-2xl whitespace-nowrap text-white sm:space-x-3">
 					<span class="font-semibold">Playground</span>
 					<span class="hidden sm:inline-block">//</span>
@@ -22,6 +22,7 @@
 </template>
 <script setup>
 import LogoIcon from "@/assets/svg/contentful-richtext-converter-icon.svg?component"
+import LogoColorIcon from "@/assets/svg/logo-color.svg?component"
 import GithubIcon from "@/assets/svg/github.svg?component"
 import NpmIcon from "@/assets/svg/npmjs.svg?component"
 </script>
