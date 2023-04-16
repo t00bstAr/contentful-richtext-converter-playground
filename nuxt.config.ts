@@ -20,13 +20,26 @@ export default defineNuxtConfig({
 		'@nuxtjs/color-mode',
 		'@nuxtjs/tailwindcss',
 		'@vueuse/nuxt',
+		'nuxt-monaco-editor',
 	],
-	colorMode: {
-		classSuffix: ''
+	monacoEditor: {
+		// These are default values:
+		dest: '_monaco',
+		locale: 'en',
+		componentName: {
+			codeEditor: 'MonacoEditor',
+			diffEditor: 'MonacoDiffEditor'
+		}
 	},
 	buildModules: [
 		'@nuxtjs/google-fonts',
 	],
+	colorMode: {
+		classSuffix: ''
+	},
+	// buildModules: [
+	//
+	// ],
 	googleFonts: {
 		families: {
 			Sen: {

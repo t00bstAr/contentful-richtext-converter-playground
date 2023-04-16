@@ -5,7 +5,8 @@
 			<div ref="slider" class="snap-mandatory snap-x hide-scrollbars overflow-x-auto flex flex-row lg:grid lg:grid-cols-12 h-full lg:justify-between">
 				<div v-intersection-observer="htmlIntersectionObserver" class="snap-start min-w-[100vw] lg:min-w-[auto] lg:col-span-4 h-full relative">
 					<ItemPill>HTML</ItemPill>
-					<textarea spellcheck="false" class="absolute inset-0 outline-none p-8 bg-[#111827] text-white resize-none" v-model="html" placeholder="Write some HTML here..." />
+<!--					<MonacoEditor class="absolute inset-0 z-[1] bg-transparent" v-model="html" lang="html" :options="options" />-->
+					<textarea spellcheck="false" class="absolute inset-0 outline-none p-8 bg-[#111827] text-white resize-none font-mono text-[14px]" v-model="html" placeholder="Write some HTML here..." />
 				</div>
 				<div v-intersection-observer="jsonIntersectionObserver" class="snap-center min-w-[100vw] overflow-x-hidden lg:min-w-[auto] lg:col-span-4 h-[calc(100vh-64px)] overflow-y-auto bg-white/5 relative">
 					<ItemPill class="sticky float-right">JSON</ItemPill>
@@ -69,8 +70,15 @@ const outputIntersectionObserver = ([{ isIntersecting }]) => outputScreenIsVisib
 
 const showToggleSwitches = ref(true)
 const activeShow = ref('output')
-const html = ref('')
+const html = ref('<p>Write HTML here...</p>')
 const copied = ref(false)
+
+const options = {
+	automaticLayout: true,
+	minimap: { enabled: false },
+	autoIndent: 'none',
+	theme: 'vs-dark'
+}
 
 const htmlIsValid = computed(() => {
 	if(!process.client) return true
@@ -108,3 +116,8 @@ const copyToClipboard = () => {
 // 	html.value = testHtml
 // })
 </script>
+
+<style lang="postcss">
+.monaco-editor{@apply py-8;}
+.monaco-editor, .monaco-editor .margin, .monaco-editor-background{@apply !bg-transparent;}
+</style>
