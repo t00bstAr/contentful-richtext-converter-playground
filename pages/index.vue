@@ -70,7 +70,7 @@ const outputIntersectionObserver = ([{ isIntersecting }]) => outputScreenIsVisib
 
 const showToggleSwitches = ref(true)
 const activeShow = ref('output')
-const html = ref('<p>Write HTML here...</p>')
+const html = ref('<p>Write or drop your HTML here...</p>')
 const copied = ref(false)
 
 const options = {
